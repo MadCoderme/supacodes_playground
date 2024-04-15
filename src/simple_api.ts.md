@@ -1,59 +1,80 @@
-## Table of Contents
-- [Introduction](#introduction)
+## 📝 Table of Contents
+
+- [Overview](#overview)
 - [Endpoints](#endpoints)
-  - [Welcome Message](#welcome-message)
-  - [Get Users](#get-users)
-- [Running the Server](#running-the-server)
-- [Example Usage Code](#example-usage-code)
+    - [Welcome Message](#welcome-message)
+    - [Get Users](#get-users)
+- [System Requirements](#system-requirements)
+- [Example Usage](#example-usage)
 
-## Introduction
-This is a simple Express API written in TypeScript. It features two endpoints: a welcome message and a user list.
+## 🧐 Overview
 
-## Endpoints
+This document provides a comprehensive overview of the simple TypeScript Express API, outlining its endpoints, functionality, and system requirements.
 
-### Welcome Message
+## 🕹️ Endpoints
+
+### 欢迎 Welcome Message 🫂
+
+**Endpoint:** `/`
+
 **Method:** GET
-**Path:** `/`
-**Response:** A welcome message
 
-###### Example usage:
-```typescript
-import axios from 'axios';
-const response = await axios.get('http://localhost:3000/');
-console.log(response.data); // "Welcome to the simple TypeScript Express API!"
+**Description:** Serves a welcome message to the API.
+
+**Response:**
+
+```json
+{
+  "message": "Welcome to the simple TypeScript Express API!"
+}
 ```
 
-### Get Users
+### 👤 Get Users
+
+**Endpoint:** `/users`
+
 **Method:** GET
-**Path:** `/users`
-**Response:** A list of users
 
-###### Example usage:
-```typescript
-import axios from 'axios';
-const response = await axios.get('http://localhost:3000/users');
-console.log(response.data); // [{ id: 1, name: 'John Doe' }, { id: 2, name: 'Peter Parker' }]
+**Description:** Retrieves a list of users from the API.
+
+**Response:**
+
+```json
+[
+  {
+    "id": 1,
+    "name": "John Doe"
+  },
+  {
+    "id": 2,
+    "name": "Peter Parker"
+  }
+]
 ```
 
-## Running the Server
-To run the server, type the following command in the terminal:
+## ⚙️ System Requirements
 
-```bash
-npm run start
-```
+The API requires the following system requirements:
 
-The server will start listening on port 3000 by default. You can change this port in the `.env` file.
+- Node.js 12+
+- npm or yarn
 
-## Example Usage Code
-Here is an example of how to use the API in your own code:
+## 💻 Example Usage
+
 ```typescript
+// Import the necessary modules
 import axios from 'axios';
+
+// Create an instance of the API client
+const client = axios.create({
+  baseURL: 'http://localhost:3000',
+});
 
 // Send a GET request to the welcome message endpoint
-const welcomeResponse = await axios.get('http://localhost:3000/');
-console.log(welcomeResponse.data);
+const welcomeMessageResponse = await client.get('/');
+console.log(welcomeMessageResponse.data);
 
 // Send a GET request to the users endpoint
-const usersResponse = await axios.get('http://localhost:3000/users');
+const usersResponse = await client.get('/users');
 console.log(usersResponse.data);
 ```

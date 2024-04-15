@@ -1,94 +1,60 @@
-## Discord Bot Documentation :gear:
+## Table of Contents 🔗
 
-### Table of Contents
-- [Introduction](#introduction)
-- [Getting Started](#getting-started)
-- [Commands](#commands)
-- [Event Listeners](#event-listeners)
-- [Error Handling](#error-handling)
-- [Best Practices](#best-practices)
-- [Example Usage](#example-usage)
+1.  Overview 💡
+2.  Setup and Usage ⚙️
+3.  Event Handlers 🤖
+    - on_ready 🟢
+    - on_message 💬
 
-### Introduction
+## 1. Overview 💡
 
-This documentation provides an overview of the Discord bot's functionality, setup, and usage. The bot is designed to interact with Discord users through commands and handle various events within the Discord server. It utilizes the Discord.py library for Python to establish a connection with the Discord API.
+This Python script is a simple Discord bot that demonstrates the integration of a bot to the Discord platform.
 
-### Getting Started
+## 2. Setup and Usage ⚙️
 
-**Prerequisites:**
-1. Discord account
-2. Discord server
-3. Python 3.6 or later
-4. pip
-5. .env file
+### **Prerequisites:**
+- Python 3.6 or later
+- discord.py library
+- dotenv library
 
-**Setup:**
-1. Install Python and Discord.py using pip:
-   - `pip install discord`
-
-2. Create a `.env` file in the same directory as your Python script and add the following line (replace `YOUR_TOKEN` with your Discord bot's token):
-   - `DISCORD_TOKEN=YOUR_TOKEN`
-
-3. Obtain your Discord bot's token by following these steps:
-   - Go to the Discord developer portal https://discord.com/developers/applications/
-   - Create a new application or select an existing one
-   - Navigate to the "Bot" tab
-   - Click the "Add Bot" button and create a new bot
-   - Copy the token generated for your bot and store it securely
-
-### Commands
-
-The Discord bot supports the following commands:
-
-| Command | Description |
-|---|---|
-| `!hello` | Responds with "Hi there!" |
-
-### Event Listeners
-
-The Discord bot listens for the following events:
-
-| Event | Description |
-|---|---|
-| `on_ready()` | Triggered when the bot connects to the Discord server |
-| `on_message()` | Triggered when a message is sent in a channel where the bot is present |
-
-### Error Handling
-
-To ensure robust operation, the bot includes error handling capabilities. Unhandled exceptions are caught and logged, and the bot automatically attempts to reconnect to the Discord server if the connection is lost.
-
-### Best Practices
-
-When using the Discord bot, it is recommended to follow these best practices:
-
-- Use commands wisely and avoid spamming the chat.
-- Respect other users and refrain from using offensive or inappropriate language.
-- Report any bugs or issues to the designated support channel or contact the bot's developers.
-
-### Example Usage
-
-```python
-import discord
-from dotenv import load_dotenv
-
-load_dotenv()
-
-TOKEN = os.getenv('DISCORD_TOKEN')
-
-client = discord.Client()
-
-@client.event
-async def on_message(message):
-    if message.content.startswith('!hello'):
-        await message.channel.send('Hi there!')
-
-client.run(TOKEN)
+### **Setup:**
+1. Create a Discord bot and obtain the **TOKEN** from the Discord Developer Portal.
+2. Create a `.env` file in the same directory as this script.
+3. Add the following line to the `.env` file:
+```
+DISCORD_TOKEN=[YOUR_BOT_TOKEN]
+```
+4. Install the required libraries using pip:
+```bash
+pip install discord dotenv
 ```
 
-1. Import the necessary modules.
-2. Load environment variables from a `.env` file.
-3. Retrieve the Discord bot's token from the environment variables.
-4. Create a Discord client instance.
-5. Define an event listener for message events.
-6. Check if the message content starts with "!hello" and respond with "Hi there!" if it does.
-7. Start the Discord bot by running the `client.run()` method.
+### **Usage:**
+To run the bot, simply run the following command:
+```bash
+python main.py
+```
+
+## 3. Event Handlers 🤖
+
+The bot defines event handlers to respond to specific events that occur on the Discord server. Here's a summary of the event handlers included in this script:
+
+### **on_ready 🟢**
+
+The `on_ready` event handler is triggered when the bot has successfully connected to the Discord server. It prints a confirmation message to the console.
+
+### **on_message 💬**
+
+The `on_message` event handler listens for incoming messages on the Discord server. It checks if the message starts with the command `!hello`, and if so, it responds with the message `Hi there!`.
+
+**Example Usage:**
+To send a message to the Discord server using the bot, follow these steps:
+1. Open Discord and go to the server where the bot is connected.
+2. Type the following message:
+```
+!hello
+```
+3. The bot will respond with the message:
+```
+Hi there!
+```

@@ -1,60 +1,80 @@
-## Simple Server 💻
+# 🌐 Simple Server Java Code Documentation 🌐
 
-### Overview 💻
+## Table of Contents
 
-This simple Java program creates an HTTP server that responds to requests with a basic HTML response. It serves as a starting point for building more complex server applications.
+- [Description](#description)
+- [Setup and Usage](#setup-and-usage)
+- [Code Structure](#code-structure)
+- [API Reference](#api-reference)
+- [Example Usage](#example-usage)
+- [Known Limitations](#known-limitations)
+- [Contributions](#contributions)
 
-### Table of Contents 📝
+## Description
 
-* **Overview**
-* **Prerequisites**
-* **Getting Started**
-    * Running the Server
-    * Handling HTTP Requests
-* **Example Usage**
-* **Troubleshooting**
-* **Contributing**
-* **License**
+This code base provides a simple HTTP server implementation in Java using the `HttpServer` API. It serves a static HTML response to all incoming requests. This server can be used for testing or as a basis for building more complex web applications. 🛠️
 
-### Prerequisites ⚙️
-
-* Java 8 or later
-
-### Getting Started 🚀
-
-#### Running the Server
+## Setup and Usage
 
 To run the server, follow these steps:
 
-1. Open a terminal window.
-2. Clone the repository containing the code: `git clone https://github.com/username/simple-server`.
-3. Navigate to the project directory: `cd simple-server`.
-4. Compile the program: `javac -cp .:lib/* SimpleServer.java`.
-5. Run the program: `java -cp .:lib/* SimpleServer`.
-6. The server will start on port `8000` by default.
+1. Ensure you have Java installed on your system.
+2. Clone or download this repository.
+3. Open a terminal window and navigate to the repository directory.
+4. Run the `javac SimpleServer.java` command to compile the Java source code.
+5. Run the `java SimpleServer` command to start the server.
 
-#### Handling HTTP Requests
+The server will start listening on port 8000 by default. You can change this port by modifying the `port` variable in the `main` method of the `SimpleServer` class.
 
-The server uses the `HttpHandler` interface to handle HTTP requests. The `MyHandler` class implements this interface and defines how to respond to incoming requests. When a client sends a request to the server, the `handle` method in `MyHandler` is called. This method sends a simple HTML response to the client.
+## Code Structure
 
-### Example Usage 💻
+The code is organized into a single Java file, `SimpleServer.java`, which contains the following classes:
 
-Send a GET request to the server:
+- `SimpleServer`: The main class that creates and starts the HTTP server.
+- `MyHandler`: An implementation of the `HttpHandler` interface that handles incoming HTTP requests.
 
+## API Reference
+
+### `SimpleServer` Class
+
+| Method | Description |
+|---|---|
+| `main(String[] args)` | Entry point to the application. |
+
+### `MyHandler` Class
+
+| Method | Description |
+|---|---|
+| `handle(HttpExchange exchange)` | Handles an incoming HTTP request and sends a static HTML response. |
+
+## Example Usage
+
+The following code demonstrates how to use the `SimpleServer` class:
+
+```java
+import java.net.InetSocketAddress;
+
+import com.sun.net.httpserver.HttpServer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        int port = 8000; // Change this if needed
+        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
+        server.createContext("/", new MyHandler());
+        server.start();
+        System.out.println("Server started on port " + port);
+    }
+}
 ```
-$ curl http://localhost:8000
-<h1>Hello from Simple Server!</h1>
-```
 
-### Troubleshooting 🚧
+This code creates a server that listens on port 8000 and serves a static HTML response to all incoming requests.
 
-* If the server doesn't start, check that you have Java installed and that the port `8000` is not already in use.
-* If you get an error when compiling the program, make sure you have the Java Development Kit (JDK) installed and that the classpath includes the necessary libraries.
+## Known Limitations
 
-### Contributing 🤝
+- The server only serves a static HTML response.
+- The server does not support HTTPS.
+- The server does not support handling request parameters or POST data.
 
-Contributions are welcome! Please read our [contributing guidelines](CONTRIBUTING.md) before submitting a pull request.
+## Contributions
 
-### License 📄
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Contributions to this code base are welcome! Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file for details on how to contribute.
