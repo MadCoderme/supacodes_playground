@@ -1,56 +1,65 @@
-## Table of Contents  📖
+**Table of Contents**
 
-- [Overview](#overview)
-- [Prerequisites](#prerequisites)
+- [Introduction](#introduction)
+- [Code Explanation](#code-explanation)
 - [Example Usage](#example-usage)
-- [Method Description](#method-description)
-  - [Logic and Algorithms](#logic-and-algorithms)
-  - [Parameters](#parameters)
-  - [Return Values](#return-values)
-  - [Complexity Analysis](#complexity-analysis)
-- [Implementation Details](#implementation-details)
-- [Additional Notes](#additional-notes)
+- [Additional Information](#additional-information)
+- [Links](#links)
 
-### Overview  🔎
+**Introduction**
 
-This class provides a function, `intToRoman`, that converts an integer to its roman numeral representation. The roman numeral representation of a number is obtained by combining the appropriate roman numerals for each digit in the number.
+The provided code is a C++ implementation of the `intToRoman()` function, which converts an integer into its Roman numeral representation. Roman numerals are a system of numerical notation used in ancient Rome, where numbers are represented by combinations of letters.
 
-### Prerequisites  📚
+**Code Explanation**
 
-Before using this class, ensure you have a basic understanding of:
-- Roman numerals
-- Integer types
+The function utilizes four helper string arrays:
 
-### Example Usage  💻
+- `ones`: Stores Roman numerals for numbers 1 to 9
+- `tens`: Stores Roman numerals for numbers 10 to 90
+- `hrns`: Stores Roman numerals for numbers 100 to 900
+- `ths`: Stores Roman numerals for numbers 1000 to 3000
 
+The function operates as follows:
+
+1. It calculates the thousands digit of the input number and retrieves the corresponding Roman numeral from the `ths` array.
+
+2. It then calculates the hundreds digit of the remaining number and retrieves the corresponding Roman numeral from the `hrns` array.
+
+3. Next, it calculates the tens digit of the remaining number and retrieves the corresponding Roman numeral from the `tens` array.
+
+4. Finally, it calculates the ones digit of the remaining number and retrieves the corresponding Roman numeral from the `ones` array.
+
+5. It concatenates the retrieved Roman numerals in descending order to form the final result.
+
+**Example Usage**
+
+Example code
 ```cpp
-int num = 1994;
-string romanNumeral = intToRoman(num); // "MCMXCIV"
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int num = 1994;
+  string romanNumeral = intToRoman(num);
+  cout << "The Roman numeral representation of " << num << " is: " << romanNumeral << endl;
+  return 0;
+}
 ```
 
-### Method Description  📝
+Output:
 
-#### Logic and Algorithms 🧮
+﻿```
+The Roman numeral representation of 1994 is: MCMXCIV
+﻿```
 
-The `intToRoman` function works by iteratively dividing the number by 1000, 100, 10, and 1, and then using the corresponding roman numeral arrays to append the respective roman numerals to the result string.
+**Additional Information**
 
-#### Parameters 📥
+- Roman numerals do not use the digits 0 or negative numbers.
+- The values represented by Roman numerals are additive, meaning that the values of the individual symbols are added together to determine the overall value.
+- The symbols are always written in descending order of value, with the exception of IV and IX, which are used to represent 4 and 9, respectively.
 
-- `num`: The integer to be converted to its roman numeral representation.
+**Links**
 
-#### Return Values 📤
-
-- The roman numeral representation of the input integer.
-
-#### Complexity Analysis ⚖️
-
-The time complexity of the `intToRoman` function is O(1). This is because the length of the roman numeral representation of an integer is bounded by a constant.
-
-### Implementation Details  🛠️
-
-The `intToRoman` function uses four arrays to store the roman numerals for ones, tens, hundreds, and thousands. The function iteratively divides the number by 1000, 100, 10, and 1, and then uses the corresponding roman numeral arrays to append the respective roman numerals to the result string.
-
-### Additional Notes  💬
-
-- The roman numeral representation of a number is not unique. For example, the number 4 can be represented as "IV" or "IIII".
-- The `intToRoman` function uses the "subtractive" notation for roman numerals, where a smaller numeral placed before a larger numeral subtracts its value from the larger numeral. For example, "IV" represents the number 4 as "5 - 1".
+- [Roman Numerals](https://en.wikipedia.org/wiki/Roman_numerals)
+- [C++ Strings](https://www.cplusplus.com/reference/string/string/)
