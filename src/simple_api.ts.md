@@ -1,80 +1,78 @@
-## 📝 Table of Contents
+## 📑 Table of Contents
 
-- [Overview](#overview)
-- [Endpoints](#endpoints)
-    - [Welcome Message](#welcome-message)
-    - [Get Users](#get-users)
-- [System Requirements](#system-requirements)
-- [Example Usage](#example-usage)
+*   [Overview](#-overview)
+*   [Modules and Imports](#-modules-and-imports)
+*   [Application Setup](#-application-setup)
+*   [Data Definition](#-data-definition)
+*   [Endpoints](#-endpoints)
+    *   [Welcome Message](#-welcome-message)
+    *   [Get Users](#-get-users)
+*   [Server啟動](#-server啟動)
 
-## 🧐 Overview
+## 🧭 Overview
 
-This document provides a comprehensive overview of the simple TypeScript Express API, outlining its endpoints, functionality, and system requirements.
+This code establishes a basic TypeScript Express API with functionalities like displaying a welcome message, retrieving a list of users, and listening for incoming requests.
 
-## 🕹️ Endpoints
+## 🧱 Modules and Imports
 
-### 欢迎 Welcome Message 🫂
-
-**Endpoint:** `/`
-
-**Method:** GET
-
-**Description:** Serves a welcome message to the API.
-
-**Response:**
-
-```json
-{
-  "message": "Welcome to the simple TypeScript Express API!"
-}
-```
-
-### 👤 Get Users
-
-**Endpoint:** `/users`
-
-**Method:** GET
-
-**Description:** Retrieves a list of users from the API.
-
-**Response:**
-
-```json
-[
-  {
-    "id": 1,
-    "name": "John Doe"
-  },
-  {
-    "id": 2,
-    "name": "Peter Parker"
-  }
-]
-```
-
-## ⚙️ System Requirements
-
-The API requires the following system requirements:
-
-- Node.js 12+
-- npm or yarn
-
-## 💻 Example Usage
+The code imports the `express` module from 'express' and creates an application instance. It also defines the port for the API.
 
 ```typescript
-// Import the necessary modules
-import axios from 'axios';
+import express, { Application, Request, Response } from 'express';
 
-// Create an instance of the API client
-const client = axios.create({
-  baseURL: 'http://localhost:3000',
-});
-
-// Send a GET request to the welcome message endpoint
-const welcomeMessageResponse = await client.get('/');
-console.log(welcomeMessageResponse.data);
-
-// Send a GET request to the users endpoint
-const usersResponse = await client.get('/users');
-console.log(usersResponse.data);
+const app: Application = express();
+const port = process.env.PORT || 3000;
 ```
+
+## ⚙️ Application Setup
+
+No code in this section.
+
+## 💽 Data Definition
+
+The code includes a sample list of users for demonstration purposes. In a real-world application, this data would likely be stored in a database.
+
+```typescript
+// Define a list of users
+const users = [
+  { id: 1, name: 'John Doe' },
+  { id: 2, name: 'Peter Parker' },
+];
+```
+
+## 🗺️ Endpoints
+
+### 🏡 Welcome Message
+
+```typescript
+app.get('/', (req: Request, res: Response) => {
+  res.send('Welcome to the simple TypeScript Express API!');
+});
+```
+
+*   **Route:** `/`
+*   **Method:** GET
+*   **Description:** Displays a welcome message.
+
+### 👥 Get Users
+
+```typescript
+app.get('/users', (req: Request, res: Response) => {
+  res.json(users);
+});
+```
+
+*   **Route:** `/users`
+*   **Method:** GET
+*   **Description:** Retrieves the list of users.
+
+## 🎧 Server Startup
+
+```typescript
+app.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
+});
+```
+
+*   **Port:** The server listens on the specified port (default: 3000) for incoming requests.
+*   **Callback:** The server logs a message indicating it's listening on the chosen port.
