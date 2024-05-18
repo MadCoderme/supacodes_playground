@@ -1,78 +1,50 @@
-## 📑 Table of Contents
+## 📖 Table of Contents
 
-*   [Overview](#-overview)
-*   [Modules and Imports](#-modules-and-imports)
-*   [Application Setup](#-application-setup)
-*   [Data Definition](#-data-definition)
-*   [Endpoints](#-endpoints)
-    *   [Welcome Message](#-welcome-message)
-    *   [Get Users](#-get-users)
-*   [Server啟動](#-server啟動)
+*   [Imports](#-import-express-application-request-response-from-express)
+*   [Application Setup](#-const-app-application-express)
+*   [Data Definition](#-define-a-list-of-users)
+*   [Endpoints](#-welcome-message-endpoint)
 
-## 🧭 Overview
+## 📥 Import Statement
 
-This code establishes a basic TypeScript Express API with functionalities like displaying a welcome message, retrieving a list of users, and listening for incoming requests.
-
-## 🧱 Modules and Imports
-
-The code imports the `express` module from 'express' and creates an application instance. It also defines the port for the API.
-
-```typescript
-import express, { Application, Request, Response } from 'express';
-
-const app: Application = express();
-const port = process.env.PORT || 3000;
-```
+The `import` statement introduces modules from external files or different parts of the application. In this file, we import the `express` module, specifically the `Application`, `Request`, and `Response` types.
 
 ## ⚙️ Application Setup
 
-No code in this section.
+The code creates an instance of an Express application and assigns it to the `app` variable. It also defines the port number to listen on, defaulting to 3000 if no environment variable is set.
 
-## 💽 Data Definition
+## 👥 Data Definition
 
-The code includes a sample list of users for demonstration purposes. In a real-world application, this data would likely be stored in a database.
-
-```typescript
-// Define a list of users
-const users = [
-  { id: 1, name: 'John Doe' },
-  { id: 2, name: 'Peter Parker' },
-];
-```
+The `users` array is hardcoded data representing a list of users, each with an `id` and `name` property. This data is used to power the `/users` endpoint. 
 
 ## 🗺️ Endpoints
 
-### 🏡 Welcome Message
+### 🏡 Welcome Message Endpoint
 
 ```typescript
 app.get('/', (req: Request, res: Response) => {
-  res.send('Welcome to the simple TypeScript Express API!');
+    res.send('Welcome to the simple TypeScript Express API!');
 });
 ```
 
-*   **Route:** `/`
-*   **Method:** GET
-*   **Description:** Displays a welcome message.
+The root route (`/`) responds with a simple welcome message, indicating that the API is up and running. This endpoint serves as an introduction to the API.
 
-### 👥 Get Users
+### 👥 Get Users Endpoint
 
 ```typescript
 app.get('/users', (req: Request, res: Response) => {
-  res.json(users);
+    res.json(users);
 });
 ```
 
-*   **Route:** `/users`
-*   **Method:** GET
-*   **Description:** Retrieves the list of users.
+The `/users` endpoint retrieves the data from the `users` array and returns it in JSON format. This endpoint provides access to the user information stored in the application.
 
-## 🎧 Server Startup
+### 🎧 Server Startup
 
 ```typescript
 app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
+    console.log(`Server is listening on port ${port}`);
 });
 ```
 
-*   **Port:** The server listens on the specified port (default: 3000) for incoming requests.
-*   **Callback:** The server logs a message indicating it's listening on the chosen port.
+Finally, the code starts the Express application, listening on the specified port. When the server starts successfully, it logs a message to the console indicating the port it's listening on.

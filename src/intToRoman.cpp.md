@@ -1,34 +1,48 @@
-## 📑 Table of Contents
+## 📑 Solution Class
 
-* [`intToRoman` Function](#inttoroman-function)
+### 📋 Table of Contents
 
+* 👉 Overview
+* ➡️ `intToRoman` Function
 
-## ➡️ `intToRoman` Function
+### 👉 Overview
 
-The `intToRoman` function converts an integer `num` into its corresponding Roman numeral representation.
+The code defines a `Solution` class containing a single function, `intToRoman`, for converting integers to their Roman numeral representations.
 
-### 📋 Function Signature
+### ➡️ `intToRoman` Function
+
+**SYNOPSIS**
 
 ```cpp
 string intToRoman(int num);
 ```
 
-### 🔨 Implementation Details
+**DESCRIPTION**
 
-The function utilizes pre-defined arrays to represent Roman numeral symbols for different桁位:
+The `intToRoman` function converts an integer `num` into its corresponding Roman numeral representation and returns it as a string.
 
-* `ones`:   Units (I - IX)
-* `tens`:   Tens (X - XC)
-* `hrns`:  Hundreds (C - CM)
-* `ths`:    Thousands (M - MMM)
+**PARAMETERS**
 
-The function calculates the Roman numeral representation by:
+* `num`: An integer representing the number to be converted.
 
-1. Extracting the thousands digit (`num / 1000`) and appending the corresponding symbol from the `ths` array.
-2. Extracting the hundreds digit (`(num % 1000) / 100`) and appending the corresponding symbol from the `hrns` array.
-3. Extracting the tens digit (`(num % 100) / 10`) and appending the corresponding symbol from the `tens` array.
-4. Extracting the ones digit (`num % 10`) and appending the corresponding symbol from the `ones` array.
+**RETURN VALUE**
 
-### ➡️ Return Value
+A string representing the Roman numeral equivalent of the input integer.
 
-The function returns a string representing the Roman numeral equivalent of the input integer `num`.
+**IMPLEMENTATION DETAILS**
+
+1. **Predefined Arrays for Roman Numerals:**
+
+    * `ones`: Stores Roman numerals for numbers 1 to 9.
+    * `tens`: Stores Roman numerals for multiples of 10 from 10 to 90.
+    * `hrns`: Stores Roman numerals for multiples of 100 from 100 to 900.
+    * `ths`: Stores Roman numerals for thousands (1000, 2000, 3000).
+
+2. **Integer Decomposition and Concatenation:**
+
+    * The function calculates the thousands, hundreds, tens, and ones components of `num` using modulo arithmetic.
+    * It then concatenates the corresponding Roman numeral strings from the predefined arrays to form the complete Roman numeral representation.
+
+```cpp
+        return ths[num/1000] + hrns[(num%1000)/100] + tens[(num%100)/10] + ones[num%10];
+```
